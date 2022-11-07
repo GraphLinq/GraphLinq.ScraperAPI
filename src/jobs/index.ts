@@ -14,9 +14,7 @@ export const jobs = async () => {
   try {
     // Jobs Start
     //await sleep(sleepTime);
-    console.log(
-      "[starting]: [GraphLinq Scraper API Job Server Is Running]"
-    );
+    console.log("[starting]: [GraphLinq Scraper API Job Server Is Running]");
 
     console.log("Nothing to do yet!");
 
