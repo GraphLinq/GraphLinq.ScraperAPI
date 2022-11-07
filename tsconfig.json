@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "outDir": "build",
+    "module": "commonjs",
+    "strict": false,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "strictNullChecks": false,
+    "target": "es6"
+  },
+  "include": ["src/"]
+}
