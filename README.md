@@ -1,4 +1,4 @@
-# GraphLinq Scrapper API
+# GraphLinq Scraper API
 
 Collect, update, and maintain a list of token addresses, contract addresses, etc. for easy lookup.
 
