@@ -1,6 +1,6 @@
 import { Model } from "sequelize";
 
-export class Uniswap extends Model {
+export class CoinMarketCap extends Model {
   public id!: number;
   public name!: string;
   public address!: string;

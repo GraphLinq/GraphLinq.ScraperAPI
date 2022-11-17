@@ -1,0 +1,40 @@
+import { Model } from "sequelize";
+
+export class LiveCoinWatch extends Model {
+  public id!: number;
+  public name!: string;
+  public symbol: string;
+  public rank: number;
+  public age: number;
+  public color: string;
+  public png32: string;
+  public png64: string;
+  public webp32: string;
+  public webp64: string;
+  public exchanges: number;
+  public markets: number;
+  public pairs: number;
+  public categories: string;
+  public allTimeHighUSD: number;
+  public circlulatingSupply: number;
+  public totalSupply: number;
+  public maxSupply: number;
+  public linkWebsite: string;
+  public linkPaper: string;
+  public linkTwitter: string;
+  public linkReddit: string;
+  public linkTelegram: string;
+  public linkDiscord: string;
+  public linkMedium: string;
+  public linkInstagram: string;
+  public code: string;
+  public rate: number;
+  public volume: number;
+  public cap: number;
+  public deltaHour: number;
+  public deltaDay: number;
+  public deltaWeek: number;
+  public deltaMonth: number;
+  public deltaQuarter: number;
+  public deltaYear: number;
+}
