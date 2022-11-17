@@ -11,7 +11,8 @@
     "build": "tsc",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'yarn start'",
     "start": "ts-node src",
-    "test": "mocha"
+    "test": "mocha",
+    "pretty": "npx prettier --write ."
   },
   "dependencies": {
     "@godaddy/terminus": "^4.9.0",
