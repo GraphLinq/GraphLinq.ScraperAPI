@@ -1,10 +1,5 @@
 // Read the secret from .env
-const secret = process.env.JWT_SECRET;
-
-// Check .env secret
-if (!secret) {
-  throw new Error("The secret must be defined in your .env!");
-}
+const secret = process.env.JWT_SECRET || "secret";
 
 // export our secret
 export const config = {
