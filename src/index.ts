@@ -14,7 +14,7 @@ import {
   LiveCoinWatch,
   Uniswap,
   CoinMarketCap200,
-  CoinMarketCapStable
+  CoinMarketCapStable,
 } from "./models";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import Bull from "bull";

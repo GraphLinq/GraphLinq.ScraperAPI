@@ -12,12 +12,16 @@ export const find = (req: Request, res: Response, next: NextFunction) => {
       : undefined;
 
   return CoinMarketCapStable.findAll(whereClause)
-    .then((coinmarketcapstables: CoinMarketCapStable[]) => res.json(coinmarketcapstables))
+    .then((coinmarketcapstables: CoinMarketCapStable[]) =>
+      res.json(coinmarketcapstables)
+    )
     .catch(next);
 };
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
   return CoinMarketCapStable.findByPk(req.params.coingeckoId)
-    .then((coinmarketcapstables: CoinMarketCapStable | null) => res.json(coinmarketcapstables))
+    .then((coinmarketcapstables: CoinMarketCapStable | null) =>
+      res.json(coinmarketcapstables)
+    )
     .catch(next);
 };

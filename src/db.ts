@@ -6,7 +6,7 @@ import {
   LiveCoinWatch,
   CoinMarketCap,
   Uniswap,
-  CoinMarketCap200
+  CoinMarketCap200,
 } from "./models";
 import consolere from "console-remote-client";
 
