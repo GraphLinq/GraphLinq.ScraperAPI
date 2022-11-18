@@ -6,6 +6,7 @@ cd ../data
 git clone git@github.com:Uniswap/tokenlists-org.git
 git clone https://github.com/sameepsi/quickswap-default-token-list
 git clone git@github.com:Uniswap/default-token-list.git
+git clone git@github.com:trustwallet/assets.git
 
 cd default-token-list
 npm install
@@ -23,6 +24,7 @@ curl -X 'GET' 'https://api.coingecko.com/api/v3/coins/list?include_platform=true
 curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link' -H 'accept: application/json' > 1inch.json
 curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link' -H 'accept: application/json' > cmc200.json
 curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link' -H 'accept: application/json' > cmcStableCoin.json
+curl -X 'GET' 'https://gateway.pinata.cloud/ipfs/QmdKy1K5TMzSHncLzUXUJdvKi1tHRmJocDRfmCXxW5mshS' -H 'accept: application/json' > pancake.json
 cd ..
 
 for jsonfile in data/*.json ;

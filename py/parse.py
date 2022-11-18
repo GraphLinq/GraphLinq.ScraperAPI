@@ -74,6 +74,32 @@ print("Parsing CMCstableCoin data... Done")
 #f.close()
 #print("Parsing 1inch data... Done")
 
+
+# Needs to be recursively parsed individually inside the blockchains folder
+# This
+#print("Parsing trustwallet data...")
+#f = open('../data/trustwallet.json')
+#d = json.load(f)
+#for i in d:
+#    sql = "INSERT INTO trustwallets (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
+#    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
+#    mycursor.execute(sql, val)
+#    mydb.commit()
+#f.close()
+#print("Parsing trustwallet data... Done")
+
+
+print("Parsing PancakeSwap data...")
+f = open('../data/pancake.json')
+d = json.load(f)
+for i in d:
+    sql = "INSERT INTO pancakeswaps (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
+    mycursor.execute(sql, val)
+    mydb.commit()
+f.close()
+print("Parsing PancakeSwap data... Done")
+
 print("Done")
 print("Run `npm run start` to start the API and Jobs server")
 print()
