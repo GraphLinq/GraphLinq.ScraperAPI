@@ -3,13 +3,9 @@
 echo "Initializing..."
 
 cd ../data
-
 git clone git@github.com:Uniswap/tokenlists-org.git
-
 git clone https://github.com/sameepsi/quickswap-default-token-list
-
 git clone git@github.com:Uniswap/default-token-list.git
-
 
 cd default-token-list
 npm install
@@ -23,18 +19,19 @@ npm run build
 mv build/quickswap-default.tokenlist.json ../quickswap-default.tokenlist.json
 cd ..
 
-cd tokenlists-org
-ls
-
+curl -X 'GET' 'https://api.coingecko.com/api/v3/coins/list?include_platform=true' -H 'accept: application/json' > coingecko.json
+curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link' -H 'accept: application/json' > 1inch.json
+curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link' -H 'accept: application/json' > cmc200.json
+curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link' -H 'accept: application/json' > cmcStableCoin.json
 cd ..
 
-curl -X 'GET' 'https://api.coingecko.com/api/v3/coins/list?include_platform=true' -H 'accept: application/json' > coingecko.json
-
-curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link' -H 'accept: application/json' > 1inch.json
-
-curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link' -H 'accept: application/json' > cmc200.json
-
-curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link' -H 'accept: application/json' > cmcStableCoin.json
+for jsonfile in data/*.json ;
+do
+    echo "Processing $jsonfile"
+    jq . $jsonfile > temp.json
+    mv temp.json $jsonfile
+    echo "Done"
+done
 
 echo "Done"
 echo "You should now run py/parse.py to import the data into the database"
