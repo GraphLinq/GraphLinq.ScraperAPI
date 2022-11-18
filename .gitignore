@@ -24,7 +24,8 @@ yarn-error.log*
 /py/bin
 /py/lib
 /py/include
-
+/py/lib64
+/py/share
 
 /source/default-token-list
 /source/install.sh

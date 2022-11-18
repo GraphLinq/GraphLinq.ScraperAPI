@@ -12,13 +12,13 @@ git clone git@github.com:Uniswap/default-token-list.git
 cd default-token-list
 npm install
 npm run build
-mv build/uniswap-default.tokenlist.json ../../uniswap-default.tokenlist.json
+mv build/uniswap-default.tokenlist.json ../uniswap-default.tokenlist.json
 cd ..
 
 cd quickswap-default-token-list
 npm install
 npm run build
-mv build/quickswap-default.tokenlist.json ../../quickswap-default.tokenlist.json
+mv build/quickswap-default.tokenlist.json ../quickswap-default.tokenlist.json
 cd ..
 
 cd tokenlists-org
