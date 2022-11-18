@@ -35,6 +35,30 @@ if (!dbBase || !dbUser || !dbPass || !dbHost) {
   throw new Error("The database connection must be defined in your .env!");
 }
 
+// Get debug mode
+const debugMode = process.env.CONSOLE_RE_DEBUG;
+if (debugMode) {
+  (function(){
+    var oldLog = console.log;
+    console.re.debug = function (message) {
+        // DO MESSAGE HERE.
+        oldLog.apply(console, arguments);
+    };
+})();
+}
+
+// Get warn mode
+const warnMode = process.env.CONSOLE_RE_WARN;
+if (warnMode) {
+  (function(){
+    var oldLog = console.log;
+    console.re.warn = function (message) {
+        // DO MESSAGE HERE.
+        oldLog.apply(console, arguments);
+    };
+})();
+}
+
 // Create database connection
 const sequelize = new Sequelize(dbBase, dbUser, dbPass, {
   host: dbHost,
@@ -43,7 +67,7 @@ const sequelize = new Sequelize(dbBase, dbUser, dbPass, {
 });
 
 // Say hello!
-console.re.warn("[starting]: [GraphLinq Scraper API v1.0]");
+console.re.log("[starting]: [GraphLinq Scraper API v1.0]");
 
 // Set our app to use express
 const app = express();
@@ -94,7 +118,7 @@ app.use(
 
 // Start our server
 const apiServer = app.listen(port, () =>
-  console.re.warn(
+  console.re.log(
     `[api_serv]: [GraphLinq Scraper API Server Listening] [${host}:${port}]`
   )
 );
@@ -117,9 +141,9 @@ async () => {
 
 // Add jobs to the queue
 serverRunnerrQueue.process(async function (job: any, done: any) {
-  console.re.warn('[queuemgr]: [Queue Manager]: +++ ', job.data.startMsg);
+  console.re.log('[queuemgr]: [Queue Manager]: +++ ', job.data.startMsg);
   await jobs();
-  console.re.warn('[queuemgr]: [Queue Manager]: +++ ', job.data.endMsg);
+  console.re.log('[queuemgr]: [Queue Manager]: +++ ', job.data.endMsg);
   done();
 });
 
@@ -132,7 +156,7 @@ serverRunnerrQueue.add(
   {
     repeat:
     {
-      every: 10000
+      every: 150000
       //cron: '* * * * *'
     }
   }

@@ -25,11 +25,35 @@ if (!dbBase || !dbUser || !dbPass || !dbHost) {
   throw new Error("The database connection must be defined in your .env!");
 }
 
+// Get debug mode
+const debugMode = process.env.CONSOLE_RE_DEBUG;
+if (debugMode) {
+  (function(){
+    var oldLog = console.log;
+    console.re.debug = function (message) {
+        // DO MESSAGE HERE.
+        oldLog.apply(console, arguments);
+    };
+})();
+}
+
+// Get warn mode
+const warnMode = process.env.CONSOLE_RE_WARN;
+if (warnMode) {
+  (function(){
+    var oldLog = console.log;
+    console.re.warn = function (message) {
+        // DO MESSAGE HERE.
+        oldLog.apply(console, arguments);
+    };
+})();
+}
+
 // Create database connection
 const sequelize = new Sequelize(dbBase, dbUser, dbPass, {
   host: dbHost,
   dialect: "mariadb",
-  logging:  msg => console.re.debug('[maria_db]:', msg)
+  logging:  msg => console.re.debug('[maria_db]:',msg)
 });
 
 console.re.debug("[dbtables]: Sequelize tables...");
@@ -128,7 +152,7 @@ console.re.debug("[dbtables]: Sequelize table LiveCoinWatch");
 LiveCoinWatch.init(
   {
     name: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.STRING,
     },
     symbol: {
