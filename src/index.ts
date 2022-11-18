@@ -13,6 +13,8 @@ import {
   CoinMarketCap,
   LiveCoinWatch,
   Uniswap,
+  CoinMarketCap200,
+  CoinMarketCapStable
 } from "./models";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import Bull from "bull";
@@ -111,6 +113,8 @@ app.use(crud("/v2/quickswaps", sequelizeCrud(Quickswap)));
 app.use(crud("/v2/coinmarketcaps", sequelizeCrud(CoinMarketCap)));
 app.use(crud("/v2/livecoinwatches", sequelizeCrud(LiveCoinWatch)));
 app.use(crud("/v2/uniswaps", sequelizeCrud(Uniswap)));
+app.use(crud("/v2/coinmarketcap200s", sequelizeCrud(CoinMarketCap200)));
+app.use(crud("/v2/coinmarketcapstables", sequelizeCrud(CoinMarketCapStable)));
 
 app.use(
   crud("/v2/search", {

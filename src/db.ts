@@ -6,6 +6,7 @@ import {
   LiveCoinWatch,
   CoinMarketCap,
   Uniswap,
+  CoinMarketCap200
 } from "./models";
 import consolere from "console-remote-client";
 
@@ -370,6 +371,68 @@ CoinMarketCap.init(
   },
   {
     modelName: "coinmarketcap",
+    sequelize,
+    timestamps: false,
+  }
+);
+
+console.re.debug("[dbtables]: Sequelize table CoinMarketCap200");
+CoinMarketCap.init(
+  {
+    chainId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    address: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    symbol: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    decimals: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+  },
+  {
+    modelName: "coinmarketcap200",
+    sequelize,
+    timestamps: false,
+  }
+);
+
+console.re.debug("[dbtables]: Sequelize table CoinMarketCapStable");
+CoinMarketCap.init(
+  {
+    chainId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    address: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    symbol: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    decimals: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+  },
+  {
+    modelName: "coinmarketcapstable",
     sequelize,
     timestamps: false,
   }

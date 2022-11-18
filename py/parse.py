@@ -10,36 +10,65 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
+print()
+print("Welcome to the GraphLinq Parser")
+print()
+
+
+print("Parsing QuickSwap data...")
 f = open('../data/quickswap-default.tokenlist.json')
 d = json.load(f)
 for i in d['tokens']:
-    #print(i['name'])
     sql = "INSERT INTO quickswaps (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
-    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
+    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['name'])
     mycursor.execute(sql, val)
     mydb.commit()
-    print(mycursor.rowcount, "1-record inserted.")
 f.close()
+print("Parsing QuickSwap data... Done")
 
+
+print("Parsing Uniswap data...")
 f = open('../data/uniswap-default.tokenlist.json')
 d = json.load(f)
 for i in d['tokens']:
-    #print(i['name'])
     sql = "INSERT INTO uniswaps (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
-    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
+    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['name'])
     mycursor.execute(sql, val)
     mydb.commit()
-    print(mycursor.rowcount, "2-record inserted.")
 f.close()
+print("Parsing Uniswap data... Done")
 
+
+print("Parsing CMC200 data...")
+f = open('../data/cmc200.json')
+d = json.load(f)
+for i in d:
+    sql = "INSERT INTO coinmarketcap200s (chainId, address, symbol, name, decimals) VALUES (%s, %s, %s, %s, %s)"
+    val = (i['chainId'], i['address'], i['symbol'], i['name'], i['decimals'])
+    mycursor.execute(sql, val)
+    mydb.commit()
+f.close()
+print("Parsing CMC200 data... Done")
+
+
+print("Parsing CMCstableCoin data...")
 f = open('../data/cmcStableCoin.json')
 d = json.load(f)
 for i in d:
-#    #print(i['name'])
-    sql = "INSERT INTO uniswaps (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
-    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
+    sql = "INSERT INTO coinmarketcapstables (chainId, address, symbol, name, decimals) VALUES (%s, %s, %s, %s, %s)"
+    val = (i['chainId'], i['address'], i['symbol'], i['name'], i['decimals'])
     mycursor.execute(sql, val)
     mydb.commit()
-    print(mycursor.rowcount, "3-record inserted.")
 f.close()
+print("Parsing CMCstableCoin data... Done")
 
+
+#print("Parsing 1inch data...")
+#f = open('../data/1inch.json')
+#d = json.load(f)
+#for i in d:
+#    sql = "INSERT INTO 1inch (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
+#    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
+#    mycursor.execute(sql, val)
+#    mydb.commit()
+#f.close()
