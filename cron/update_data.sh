@@ -17,5 +17,14 @@ eval curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://toke
 eval curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link' -H 'accept: application/json' > /Users/john/Desktop/GraphLinq.ScraperAPI/data/cmc200.json
 eval curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link' -H 'accept: application/json' > /Users/john/Desktop/GraphLinq.ScraperAPI/data/cmcStableCoin.json
 echo "Download New curled JSON Data... Done"
+eval cd ..
+echo "Format JSON files..."
+for jsonfile in data/*.json ;
+do
+    echo "Processing $jsonfile"
+    jq . $jsonfile > temp.json
+    mv temp.json $jsonfile
+    echo "Done"
+done
 echo "GraphLinq Scraper API Cron Job COMPLETE"
 echo
