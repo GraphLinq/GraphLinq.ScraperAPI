@@ -76,9 +76,9 @@ export const jobs = async () => {
     // Axios config
     var config = {
       method: "post",
-      url: "https://api.livecoinwatch.com/coins/list",
+      url: process.env.LCW_API + "/coins/list",
       headers: {
-        "x-api-key": "e445bbe9-5a54-4925-a17f-dfb4c36a09fa",
+        "x-api-key": process.env.LCW_KEY,
       },
       data: {
         currency: "USD",

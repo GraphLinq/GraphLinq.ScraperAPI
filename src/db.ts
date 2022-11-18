@@ -38,7 +38,6 @@ if (debugMode) {
   (function () {
     var oldLog = console.log;
     console.re.debug = function (message) {
-      // DO MESSAGE HERE.
       oldLog.apply(console, arguments);
     };
   })();
@@ -50,7 +49,6 @@ if (warnMode) {
   (function () {
     var oldLog = console.log;
     console.re.warn = function (message) {
-      // DO MESSAGE HERE.
       oldLog.apply(console, arguments);
     };
   })();

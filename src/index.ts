@@ -33,15 +33,10 @@ consolere.connect({
 console.re.clear();
 
 // Database
-const dbBase = process.env.DB_BASE;
-const dbUser = process.env.DB_USER;
-const dbPass = process.env.DB_PASS;
-const dbHost = process.env.DB_HOST;
-
-// Check if needed variables are set for DB
-if (!dbBase || !dbUser || !dbPass || !dbHost) {
-  throw new Error("The database connection must be defined in your .env!");
-}
+const dbBase = process.env.DB_BASE || "database";
+const dbUser = process.env.DB_USER || "user";
+const dbPass = process.env.DB_PASS || "password";
+const dbHost = process.env.DB_HOST || "localhost";
 
 // Get debug mode
 const debugMode = process.env.CONSOLE_RE_DEBUG;
@@ -49,7 +44,6 @@ if (debugMode) {
   (function () {
     var oldLog = console.log;
     console.re.debug = function (message) {
-      // DO MESSAGE HERE.
       oldLog.apply(console, arguments);
     };
   })();
@@ -61,7 +55,6 @@ if (warnMode) {
   (function () {
     var oldLog = console.log;
     console.re.warn = function (message) {
-      // DO MESSAGE HERE.
       oldLog.apply(console, arguments);
     };
   })();
@@ -87,7 +80,7 @@ const host = process.env.API_HOST || "http://localhost";
 
 // Get our CORS options
 console.re.debug("[corsopts]:", process.env.CORS_ORIGIN);
-const corsOrigin = process.env.CORS_ORIGIN || ["http://localhost:3333"];
+const corsOrigin = process.env.CORS_ORIGIN || ["http://localhost:8000"];
 
 // Add our Middlewares
 const whitelist = corsOrigin;
@@ -137,11 +130,10 @@ const apiServer = app.listen(port, () =>
   )
 );
 
-/*
 // Redis Bull Queue
 const serverRunnerrQueue = new Bull("serverRunner", {
   redis: {
-    port: 6379,
+    port: process.env.REDIS_PORT,
     host: "127.0.0.1",
     password: process.env.REDIS_PASS,
   },
@@ -154,23 +146,20 @@ async () => {
 
 // Add jobs to the queue
 serverRunnerrQueue.process(async function (job: any, done: any) {
-  console.re.log("[queuemgr]: [Queue Manager]: +++ ", job.data.startMsg);
   await jobs();
-  console.re.log("[queuemgr]: [Queue Manager]: +++ ", job.data.endMsg);
   done();
 });
 
 // Run job on a cron schedule
 serverRunnerrQueue.add(
   {
-    startMsg: "[ServerParser Job Runner Starting]",
-    endMsg: "[ServerParser Job Runner Finished]",
+    startMsg: "",
+    endMsg: "",
   },
   {
     repeat: {
       every: 150000,
-      //cron: '* * * * *'
+      //cron: process.env.JOB_SERVER_CRON,
     },
   }
 );
-*/
