@@ -53,7 +53,7 @@ Edit your crontab with `crontab -e`
 
 Here is an example of running the cron every 12 hours and redirecting the output to a log file.
 
-`* */12 * * * cd /path/to/GraphLinq.ScraperAPI/crons && ./update_data.sh > /logs/cron.log`
+`* */12 * * * cd /path/to/GraphLinq.ScraperAPI/cron && ./update_data.sh > /logs/cron.log`
 
 ### Redis Bull Queue Cron
 
