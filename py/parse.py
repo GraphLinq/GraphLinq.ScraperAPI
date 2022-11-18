@@ -11,7 +11,7 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 print()
-print("Welcome to the GraphLinq Parser")
+print("Welcome to the GraphLinq Initial Parse (INSERT ONLY)")
 print()
 
 
@@ -72,3 +72,8 @@ print("Parsing CMCstableCoin data... Done")
 #    mycursor.execute(sql, val)
 #    mydb.commit()
 #f.close()
+#print("Parsing 1inch data... Done")
+
+print("Done")
+print("Run `npm run start` to start the API and Jobs server")
+print()

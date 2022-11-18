@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Initializing..."
+
 cd ../data
 
 git clone git@github.com:Uniswap/tokenlists-org.git
@@ -33,3 +35,7 @@ curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1i
 curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link' -H 'accept: application/json' > cmc200.json
 
 curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link' -H 'accept: application/json' > cmcStableCoin.json
+
+echo "Done"
+echo "You should now run py/parse.py to import the data into the database"
+echo
