@@ -7,7 +7,13 @@ import crud, {
 } from "express-sequelize-crud";
 import dotenv from "dotenv";
 import { jobs } from "./jobs";
-import { CoinGecko, Quickswap, CoinMarketCap, LiveCoinWatch, Uniswap } from "./models";
+import {
+  CoinGecko,
+  Quickswap,
+  CoinMarketCap,
+  LiveCoinWatch,
+  Uniswap,
+} from "./models";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import Bull from "bull";
 import consolere from "console-remote-client";
@@ -38,32 +44,32 @@ if (!dbBase || !dbUser || !dbPass || !dbHost) {
 // Get debug mode
 const debugMode = process.env.CONSOLE_RE_DEBUG;
 if (debugMode) {
-  (function(){
+  (function () {
     var oldLog = console.log;
     console.re.debug = function (message) {
-        // DO MESSAGE HERE.
-        oldLog.apply(console, arguments);
+      // DO MESSAGE HERE.
+      oldLog.apply(console, arguments);
     };
-})();
+  })();
 }
 
 // Get warn mode
 const warnMode = process.env.CONSOLE_RE_WARN;
 if (warnMode) {
-  (function(){
+  (function () {
     var oldLog = console.log;
     console.re.warn = function (message) {
-        // DO MESSAGE HERE.
-        oldLog.apply(console, arguments);
+      // DO MESSAGE HERE.
+      oldLog.apply(console, arguments);
     };
-})();
+  })();
 }
 
 // Create database connection
 const sequelize = new Sequelize(dbBase, dbUser, dbPass, {
   host: dbHost,
   dialect: "mariadb",
-  logging:  msg => console.re.debug('[maria_db]:', msg)
+  logging: (msg) => console.re.debug("[maria_db]:", msg),
 });
 
 // Say hello!
@@ -88,12 +94,14 @@ const corsOptions = {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      console.re.debug("[api_serv]: [CORS: Rejected Request] FROM: script kiddie]");
+      console.re.debug(
+        "[api_serv]: [CORS: Rejected Request] FROM: script kiddie]"
+      );
       //callback(new Error("Not allowed by CORS")); // UNDO THIS!!!!!
       callback(null, true);
     }
   },
-  exposeHeaders: ['Content-Length', 'Content-Range'],
+  exposeHeaders: ["Content-Length", "Content-Range"],
 };
 app.use(cors(corsOptions));
 
@@ -105,16 +113,18 @@ app.use(crud("/v2/livecoinwatchs", sequelizeCrud(LiveCoinWatch)));
 app.use(crud("/v2/uniswaps", sequelizeCrud(Uniswap)));
 
 app.use(
-  crud('/v2/search', {
+  crud("/v2/search", {
     getList: ({ filter, limit, offset, order }) =>
       LiveCoinWatch.findAndCountAll({ limit, offset, order, where: filter }),
-  }));
+  })
+);
 
 app.use(
-  crud('/v2/test/search', {
+  crud("/v2/test/search", {
     ...sequelizeCrud(LiveCoinWatch),
-    search: sequelizeSearchFields(LiveCoinWatch, ['name', 'code']),
-  }));
+    search: sequelizeSearchFields(LiveCoinWatch, ["name", "code"]),
+  })
+);
 
 // Start our server
 const apiServer = app.listen(port, () =>
@@ -124,40 +134,37 @@ const apiServer = app.listen(port, () =>
 );
 
 // Redis Bull Queue
-const serverRunnerrQueue = new Bull(
-  'serverRunner', {
-    redis:{
-      port: 6379,
-      host: '127.0.0.1',
-      password: process.env.REDIS_PASS
-    }
-  }
-);
+const serverRunnerrQueue = new Bull("serverRunner", {
+  redis: {
+    port: 6379,
+    host: "127.0.0.1",
+    password: process.env.REDIS_PASS,
+  },
+});
 
 // Clear the queue
 async () => {
   await serverRunnerrQueue.obliterate({ force: true });
-}
+};
 
 // Add jobs to the queue
 serverRunnerrQueue.process(async function (job: any, done: any) {
-  console.re.log('[queuemgr]: [Queue Manager]: +++ ', job.data.startMsg);
+  console.re.log("[queuemgr]: [Queue Manager]: +++ ", job.data.startMsg);
   await jobs();
-  console.re.log('[queuemgr]: [Queue Manager]: +++ ', job.data.endMsg);
+  console.re.log("[queuemgr]: [Queue Manager]: +++ ", job.data.endMsg);
   done();
 });
 
 // Run job on a cron schedule
 serverRunnerrQueue.add(
   {
-    startMsg: '[ServerParser Job Runner Starting]',
-    endMsg: '[ServerParser Job Runner Finished]',
+    startMsg: "[ServerParser Job Runner Starting]",
+    endMsg: "[ServerParser Job Runner Finished]",
   },
   {
-    repeat:
-    {
-      every: 150000
+    repeat: {
+      every: 150000,
       //cron: '* * * * *'
-    }
+    },
   }
 );

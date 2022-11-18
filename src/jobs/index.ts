@@ -1,7 +1,13 @@
 import Bull from "bull";
 import axios from "axios";
 import { sequelize } from "../db";
-import { CoinGecko, CoinMarketCap, LiveCoinWatch, Uniswap, Quickswap } from "../models";
+import {
+  CoinGecko,
+  CoinMarketCap,
+  LiveCoinWatch,
+  Uniswap,
+  Quickswap,
+} from "../models";
 const { Op } = require("sequelize");
 const CG = require("coingecko-api");
 const CGClient = new CG();
@@ -22,27 +28,26 @@ consolere.connect({
 // Get debug mode
 const debugMode = process.env.CONSOLE_RE_DEBUG;
 if (debugMode) {
-  (function(){
+  (function () {
     var oldLog = console.log;
     console.re.debug = function (message) {
-        // DO MESSAGE HERE.
-        oldLog.apply(console, arguments);
+      // DO MESSAGE HERE.
+      oldLog.apply(console, arguments);
     };
-})();
+  })();
 }
 
 // Get warn mode
 const warnMode = process.env.CONSOLE_RE_WARN;
 if (warnMode) {
-  (function(){
+  (function () {
     var oldLog = console.log;
     console.re.warn = function (message) {
-        // DO MESSAGE HERE.
-        oldLog.apply(console, arguments);
+      // DO MESSAGE HERE.
+      oldLog.apply(console, arguments);
     };
-})();
+  })();
 }
-
 
 const sleepTime = 3666;
 
@@ -70,18 +75,18 @@ export const jobs = async () => {
 
     // Axios config
     var config = {
-      method: 'post',
-      url: 'https://api.livecoinwatch.com/coins/list',
+      method: "post",
+      url: "https://api.livecoinwatch.com/coins/list",
       headers: {
-        'x-api-key': 'e445bbe9-5a54-4925-a17f-dfb4c36a09fa'
+        "x-api-key": "e445bbe9-5a54-4925-a17f-dfb4c36a09fa",
       },
       data: {
-        currency: 'USD',
-        sort: 'rank',
-        order: 'ascending',
+        currency: "USD",
+        sort: "rank",
+        order: "ascending",
         offset: currDB,
         limit: 1000,
-        meta: true
+        meta: true,
       },
     };
     //console.re.debug("[debugger]:", JSON.stringify(data));
@@ -133,57 +138,61 @@ export const jobs = async () => {
           deltaWeek: item.deltaWeek,
           deltaMonth: item.deltaMonth,
           deltaQuarter: item.deltaQuarter,
-          deltaYear: item.deltaYear
-        }
+          deltaYear: item.deltaYear,
+        },
       });
       if (created) {
-        console.re.warn('[dbinsert]: [Record did not exist]: INSERT:');
+        console.re.warn("[dbinsert]: [Record did not exist]: INSERT:");
         await sleep(sleepTime);
       } else {
-        console.re.warn('[dbupdate]: A RECORD EXISTED AND WE NEED TO UPDATE IT');
+        console.re.warn(
+          "[dbupdate]: A RECORD EXISTED AND WE NEED TO UPDATE IT"
+        );
         await sleep(sleepTime);
-        let newLCW = await LiveCoinWatch.update({
-          name: item.name,
-          symbol: item.symbol,
-          rank: item.rank,
-          age: item.age,
-          color: item.color,
-          png32: item.png32,
-          png64: item.png64,
-          webp32: item.webp32,
-          webp64: item.webp64,
-          exchanges: item.exchanges,
-          markets: item.markets,
-          pairs: item.pairs,
-          categories: item.code,
-          allTimeHighUSD: item.allTimeHighUSD,
-          circlulatingSupply: item.circlulatingSupply,
-          totalSupply: item.totalSupply,
-          maxSupply: item.maxSupply,
-          linkWebsite: item.linkWebsite,
-          linkPaper: item.linkWhitepaper,
-          linkTwitter: item.linkTwitter,
-          linkReddit: item.linkReddit,
-          linkTelegram: item.linkTelegram,
-          linkDiscord: item.linkDiscord,
-          linkMedium: item.linkMedium,
-          linkInstagram: item.linkInstagram,
-          rate: item.rate,
-          volume: item.volume,
-          cap: item.cap,
-          deltaHour: item.deltaHour,
-          deltaDay: item.deltaDay,
-          deltaWeek: item.deltaWeek,
-          deltaMonth: item.deltaMonth,
-          deltaQuarter: item.deltaQuarter,
-          deltaYear: item.deltaYear
-        }, {
-          where: {
-            code: item.code
+        let newLCW = await LiveCoinWatch.update(
+          {
+            name: item.name,
+            symbol: item.symbol,
+            rank: item.rank,
+            age: item.age,
+            color: item.color,
+            png32: item.png32,
+            png64: item.png64,
+            webp32: item.webp32,
+            webp64: item.webp64,
+            exchanges: item.exchanges,
+            markets: item.markets,
+            pairs: item.pairs,
+            categories: item.code,
+            allTimeHighUSD: item.allTimeHighUSD,
+            circlulatingSupply: item.circlulatingSupply,
+            totalSupply: item.totalSupply,
+            maxSupply: item.maxSupply,
+            linkWebsite: item.linkWebsite,
+            linkPaper: item.linkWhitepaper,
+            linkTwitter: item.linkTwitter,
+            linkReddit: item.linkReddit,
+            linkTelegram: item.linkTelegram,
+            linkDiscord: item.linkDiscord,
+            linkMedium: item.linkMedium,
+            linkInstagram: item.linkInstagram,
+            rate: item.rate,
+            volume: item.volume,
+            cap: item.cap,
+            deltaHour: item.deltaHour,
+            deltaDay: item.deltaDay,
+            deltaWeek: item.deltaWeek,
+            deltaMonth: item.deltaMonth,
+            deltaQuarter: item.deltaQuarter,
+            deltaYear: item.deltaYear,
+          },
+          {
+            where: {
+              code: item.code,
+            },
           }
-        });
+        );
       }
-
     });
 
     await sleep(sleepTime);

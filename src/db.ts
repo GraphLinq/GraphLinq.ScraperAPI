@@ -1,6 +1,12 @@
 import { Sequelize, DataTypes } from "sequelize";
 import dotenv from "dotenv";
-import { CoinGecko, Quickswap, LiveCoinWatch, CoinMarketCap, Uniswap } from "./models";
+import {
+  CoinGecko,
+  Quickswap,
+  LiveCoinWatch,
+  CoinMarketCap,
+  Uniswap,
+} from "./models";
 import consolere from "console-remote-client";
 
 // Get config
@@ -28,32 +34,32 @@ if (!dbBase || !dbUser || !dbPass || !dbHost) {
 // Get debug mode
 const debugMode = process.env.CONSOLE_RE_DEBUG;
 if (debugMode) {
-  (function(){
+  (function () {
     var oldLog = console.log;
     console.re.debug = function (message) {
-        // DO MESSAGE HERE.
-        oldLog.apply(console, arguments);
+      // DO MESSAGE HERE.
+      oldLog.apply(console, arguments);
     };
-})();
+  })();
 }
 
 // Get warn mode
 const warnMode = process.env.CONSOLE_RE_WARN;
 if (warnMode) {
-  (function(){
+  (function () {
     var oldLog = console.log;
     console.re.warn = function (message) {
-        // DO MESSAGE HERE.
-        oldLog.apply(console, arguments);
+      // DO MESSAGE HERE.
+      oldLog.apply(console, arguments);
     };
-})();
+  })();
 }
 
 // Create database connection
 const sequelize = new Sequelize(dbBase, dbUser, dbPass, {
   host: dbHost,
   dialect: "mariadb",
-  logging:  msg => console.re.debug('[maria_db]:',msg)
+  logging: (msg) => console.re.debug("[maria_db]:", msg),
 });
 
 console.re.debug("[dbtables]: Sequelize tables...");
