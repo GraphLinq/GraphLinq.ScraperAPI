@@ -12,12 +12,12 @@ export const find = (req: Request, res: Response, next: NextFunction) => {
       : undefined;
 
   return Quickswap.findAll(whereClause)
-    .then((coingeckos: Quickswap[]) => res.json(coingeckos))
+    .then((quickswaps: Quickswap[]) => res.json(quickswaps))
     .catch(next);
 };
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
   return Quickswap.findByPk(req.params.coingeckoId)
-    .then((coingeckos: Quickswap | null) => res.json(coingeckos))
+    .then((quickswaps: Quickswap | null) => res.json(quickswaps))
     .catch(next);
 };

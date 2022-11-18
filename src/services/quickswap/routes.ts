@@ -6,8 +6,8 @@ import * as controller from "./controller";
 
 export const quickswapRouter = express.Router();
 
-/** GET /api/coingeckos */
+/** GET /api/quickswaps */
 quickswapRouter.route("/").get(controller.find);
 
-/** GET /api/coingeckos/:coingeckoId */
+/** GET /api/quickswaps/:coingeckoId */
 quickswapRouter.route("/:quickswapId").get(controller.get);

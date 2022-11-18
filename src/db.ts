@@ -148,7 +148,7 @@ Quickswap.init(
     },
   },
   {
-    modelName: "qstoken",
+    modelName: "quickswap",
     sequelize,
     timestamps: false,
   }
