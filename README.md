@@ -51,13 +51,26 @@ The repositories and JSON files are updated often. The cron job will keep these 
 
 Edit your crontab with `crontab -e`
 
-Here is an example of running the cron every 12 hours.
+Here is an example of running the cron every 12 hours and redirecting the output to a log file.
 
-`* */12 * * * /bin/bash /path/to/project/GraphLinq.ScraperAPI/cron/update_data.sh > /path/to/log/directory/cron.log`
+`* */12 * * * cd /path/to/GraphLinq.ScraperAPI/crons && ./update_data.sh > /logs/cron.log`
 
 ### Redis Bull Queue Cron
 
-This cron can handle on demand actions, task queing, crons, jobs, and more.
+This cron can handle on demand actions, task queing, crons, jobs, and more. Connect to the Redis CLI to view.
+
+After `AUTH` login run `KEYS *` to see all keys stored in Redis or run `KEYS bull*` to only see the bull related keys.
+
+Same output:
+
+1. bull:serverRunner:repeat:57d4290a94fbc055251fbe3b536dbc44:1668799650000
+2. bull:serverRunner:delayed
+3. bull:serverRunner:repeat
+4. bull:serverRunner:repeat:57d4290a94fbc055251fbe3b536dbc44:1668799800000
+5. bull:serverRunner:completed
+6. bull:serverRunner:id
+
+If you need to clear the queue run `FLUSHALL`
 
 ## Supported Networks / Data Sources
 
