@@ -18,6 +18,7 @@ yarn-error.log*
 
 /.vscode
 /build
+/data
 
 # python local env
 /py/bin
