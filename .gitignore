@@ -26,7 +26,3 @@ yarn-error.log*
 /py/include
 /py/lib64
 /py/share
-
-/source/default-token-list
-/source/install.sh
-/source/quickswap-default-token-list
