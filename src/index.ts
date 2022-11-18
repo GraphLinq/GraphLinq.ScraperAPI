@@ -107,9 +107,9 @@ app.use(cors(corsOptions));
 
 // Routes for our API
 app.use(crud("/v2/coingeckos", sequelizeCrud(CoinGecko)));
-app.use(crud("/v2/qstokens", sequelizeCrud(Quickswap)));
+app.use(crud("/v2/quickswaps", sequelizeCrud(Quickswap)));
 app.use(crud("/v2/coinmarketcaps", sequelizeCrud(CoinMarketCap)));
-app.use(crud("/v2/livecoinwatchs", sequelizeCrud(LiveCoinWatch)));
+app.use(crud("/v2/livecoinwatches", sequelizeCrud(LiveCoinWatch)));
 app.use(crud("/v2/uniswaps", sequelizeCrud(Uniswap)));
 
 app.use(
@@ -133,6 +133,7 @@ const apiServer = app.listen(port, () =>
   )
 );
 
+/*
 // Redis Bull Queue
 const serverRunnerrQueue = new Bull("serverRunner", {
   redis: {
@@ -168,3 +169,4 @@ serverRunnerrQueue.add(
     },
   }
 );
+*/

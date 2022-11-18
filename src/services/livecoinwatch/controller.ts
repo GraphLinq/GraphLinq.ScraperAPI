@@ -12,12 +12,12 @@ export const find = (req: Request, res: Response, next: NextFunction) => {
       : undefined;
 
   return LiveCoinWatch.findAll(whereClause)
-    .then((coingeckos: LiveCoinWatch[]) => res.json(coingeckos))
+    .then((livecoinwatches: LiveCoinWatch[]) => res.json(livecoinwatches))
     .catch(next);
 };
 
 export const get = (req: Request, res: Response, next: NextFunction) => {
   return LiveCoinWatch.findByPk(req.params.coingeckoId)
-    .then((coingeckos: LiveCoinWatch | null) => res.json(coingeckos))
+    .then((livecoinwatches: LiveCoinWatch | null) => res.json(livecoinwatches))
     .catch(next);
 };
