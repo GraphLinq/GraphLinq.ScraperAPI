@@ -4,9 +4,9 @@ import {
   CoinGecko,
   Quickswap,
   LiveCoinWatch,
-  CoinMarketCap,
   Uniswap,
   CoinMarketCap200,
+  CoinMarketCapStable,
 } from "./models";
 import consolere from "console-remote-client";
 
@@ -339,43 +339,8 @@ Uniswap.init(
   }
 );
 
-console.re.debug("[dbtables]: Sequelize table CoinMarketCap");
-CoinMarketCap.init(
-  {
-    name: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
-    address: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
-    symbol: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
-    decimals: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-    },
-    chainId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-    },
-    logoURI: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
-  },
-  {
-    modelName: "coinmarketcap",
-    sequelize,
-    timestamps: false,
-  }
-);
-
 console.re.debug("[dbtables]: Sequelize table CoinMarketCap200");
-CoinMarketCap.init(
+CoinMarketCap200.init(
   {
     chainId: {
       allowNull: false,
@@ -406,7 +371,7 @@ CoinMarketCap.init(
 );
 
 console.re.debug("[dbtables]: Sequelize table CoinMarketCapStable");
-CoinMarketCap.init(
+CoinMarketCapStable.init(
   {
     chainId: {
       allowNull: false,
