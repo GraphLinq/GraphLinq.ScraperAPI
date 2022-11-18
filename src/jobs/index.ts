@@ -3,7 +3,8 @@ import axios from "axios";
 import { sequelize } from "../db";
 import {
   CoinGecko,
-  CoinMarketCap,
+  CoinMarketCap200,
+  CoinMarketCapStable,
   LiveCoinWatch,
   Uniswap,
   Quickswap,
