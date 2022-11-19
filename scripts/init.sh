@@ -29,7 +29,6 @@ do
     eval mv data/temp.json $jsonfile
     echo "Done"
 done
-
 echo "Done"
 echo "You should now run py/parse.py to import the data into the database"
 echo
