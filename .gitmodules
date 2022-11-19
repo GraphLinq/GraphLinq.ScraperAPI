@@ -1,0 +1,6 @@
+[submodule "data/quickswap-default-token-list"]
+	path = data/quickswap-default-token-list
+	url = https://github.com/sameepsi/quickswap-default-token-list
+[submodule "data/default-token-list"]
+	path = data/default-token-list
+	url = git@github.com:Uniswap/default-token-list.git
