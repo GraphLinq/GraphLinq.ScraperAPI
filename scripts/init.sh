@@ -1,37 +1,32 @@
 #!/bin/bash
-
-echo "Initializing..."
-
-cd ../data
-git clone git@github.com:Uniswap/tokenlists-org.git
-git clone https://github.com/sameepsi/quickswap-default-token-list
-git clone git@github.com:Uniswap/default-token-list.git
-git clone git@github.com:trustwallet/assets.git
-
-cd default-token-list
-npm install
-npm run build
-mv build/uniswap-default.tokenlist.json ../uniswap-default.tokenlist.json
+echo
+echo "GraphLinq Scraper API Install Script"
+echo
+echo "Grabbing Submodules..."
 cd ..
-
-cd quickswap-default-token-list
-npm install
-npm run build
-mv build/quickswap-default.tokenlist.json ../quickswap-default.tokenlist.json
-cd ..
-
-curl -X 'GET' 'https://api.coingecko.com/api/v3/coins/list?include_platform=true' -H 'accept: application/json' > coingecko.json
-curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link' -H 'accept: application/json' > 1inch.json
-curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link' -H 'accept: application/json' > cmc200.json
-curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link' -H 'accept: application/json' > cmcStableCoin.json
-curl -X 'GET' 'https://gateway.pinata.cloud/ipfs/QmdKy1K5TMzSHncLzUXUJdvKi1tHRmJocDRfmCXxW5mshS' -H 'accept: application/json' > pancake.json
-cd ..
-
+eval git submodule update --init --recursive
+echo "Grabbing Submodules... Done"
+echo "Installing Submodule NPM Packages..."
+eval git submodule foreach yarn
+echo "Installing Submodule NPM Packages... Done"
+echo "Building Submodules..."
+eval git submodule foreach yarn build
+echo "Building Submodules... Done"
+echo "Move Submodule JSON Data..."
+eval mv data/default-token-list/build/uniswap-default.tokenlist.json data/uniswap-default.tokenlist.json
+eval mv data/quickswap-default-token-list/build/quickswap-default.tokenlist.json data/quickswap-default.tokenlist.json
+echo "Move Submodule JSON Data... Done"
+echo "Curl JSON data..."
+eval curl -X 'GET' 'https://api.coingecko.com/api/v3/coins/list?include_platform=true' -H 'accept: application/json' > data/coingecko.json
+eval curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://tokens.1inch.eth.link' -H 'accept: application/json' > data/1inch.json
+eval curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://erc20.cmc.eth.link' -H 'accept: application/json' > data/cmc200.json
+eval curl -X 'GET' 'https://wispy-bird-88a7.uniswap.workers.dev/?url=http://stablecoin.cmc.eth.link' -H 'accept: application/json' > data/cmcStableCoin.json
+eval curl -X 'GET' 'https://gateway.pinata.cloud/ipfs/QmdKy1K5TMzSHncLzUXUJdvKi1tHRmJocDRfmCXxW5mshS' -H 'accept: application/json' > data/pancake.json
 for jsonfile in data/*.json ;
 do
     echo "Processing $jsonfile"
-    jq . $jsonfile > temp.json
-    mv temp.json $jsonfile
+    jq . $jsonfile > data/temp.json
+    eval mv data/temp.json $jsonfile
     echo "Done"
 done
 
