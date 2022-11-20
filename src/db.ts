@@ -9,6 +9,8 @@ import {
   CoinMarketCapStable,
   Pancakeswap,
   OneInch,
+  CoinGeckoPlatformType,
+  CoinGeckoPlatform,
 } from "./models";
 import consolere from "console-remote-client";
 
@@ -68,55 +70,27 @@ console.re.debug("[dbtables]: Sequelize tables...");
 console.re.debug("[dbtables]: Sequelize table CoinGecko");
 CoinGecko.init(
   {
-    factoryId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-    },
-    factoryName: {
+    coinGeckoId: {
       allowNull: false,
       type: DataTypes.STRING,
     },
-    factorySymbol: {
+    symbol: {
       allowNull: false,
       type: DataTypes.STRING,
     },
-    factoryLink: {
+    name: {
       allowNull: false,
       type: DataTypes.STRING,
     },
-    creatorAddress: {
+    platforms: {
       allowNull: false,
       type: DataTypes.STRING,
-    },
-    royalty: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-    },
-    price: {
-      allowNull: false,
-      type: DataTypes.DECIMAL(26, 0).UNSIGNED,
-    },
-    currency: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
-    isPaused: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-    },
-    curIndex: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-    },
-    maxIndex: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
     },
   },
   {
     modelName: "coingecko",
     sequelize,
-    timestamps: true,
+    timestamps: false,
   }
 );
 
@@ -474,6 +448,43 @@ OneInch.init(
     timestamps: false,
   }
 );
+
+
+console.re.debug("[dbtables]: Sequelize table CoinGeckoPlaformTypes");
+CoinGeckoPlatformType.init(
+  {
+    address: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    modelName: "coingeckoplatformtype",
+    sequelize,
+    timestamps: false,
+  }
+);
+
+console.re.debug("[dbtables]: Sequelize table CoinGeckoPlaform");
+CoinGeckoPlatform.init(
+  {
+    coingeckoId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    address: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    modelName: "coingeckoplatform",
+    sequelize,
+    timestamps: false,
+  }
+);
+
+
 
 // Create new tables
 sequelize.sync();

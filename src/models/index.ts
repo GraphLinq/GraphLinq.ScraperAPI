@@ -6,3 +6,5 @@ export * from "./coinmarketcap200.model";
 export * from "./coinmarketcapstable.model";
 export * from "./pancakeswap.model";
 export * from "./oneinch.model";
+export * from "./coingeckoplatform.model";
+export * from "./coingeckoplatformtype.model";
