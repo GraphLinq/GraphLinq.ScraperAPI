@@ -8,6 +8,7 @@ import {
   CoinMarketCap200,
   CoinMarketCapStable,
   Pancakeswap,
+  OneInch,
 } from "./models";
 import consolere from "console-remote-client";
 
@@ -432,6 +433,43 @@ Pancakeswap.init(
   },
   {
     modelName: "pancakeswap",
+    sequelize,
+    timestamps: false,
+  }
+);
+
+
+console.re.debug("[dbtables]: Sequelize table OneInches");
+OneInch.init(
+  {
+    address: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    chainId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    symbol: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    decimals: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+
+    logoURI: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    modelName: "oneinch",
     sequelize,
     timestamps: false,
   }

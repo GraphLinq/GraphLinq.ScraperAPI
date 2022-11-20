@@ -15,6 +15,7 @@ import {
   CoinMarketCap200,
   CoinMarketCapStable,
   Pancakeswap,
+  OneInch,
 } from "./models";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import Bull from "bull";
@@ -22,21 +23,6 @@ import consolere from "console-remote-client";
 
 // Get config
 dotenv.config();
-
-// Console Remote
-consolere.connect({
-  server: process.env.CONSOLE_RE_SERVER,
-  channel: process.env.CONSOLE_RE_CHANNEL,
-  redirectDefaultConsoleToRemote: true,
-  disableDefaultConsoleOutput: false,
-});
-console.re.clear();
-
-// Database
-const dbBase = process.env.DB_BASE || "database";
-const dbUser = process.env.DB_USER || "user";
-const dbPass = process.env.DB_PASS || "password";
-const dbHost = process.env.DB_HOST || "localhost";
 
 // Get debug mode
 const debugMode = process.env.CONSOLE_RE_DEBUG;
@@ -59,6 +45,21 @@ if (warnMode) {
     };
   })();
 }
+
+// Console Remote
+consolere.connect({
+  server: process.env.CONSOLE_RE_SERVER,
+  channel: process.env.CONSOLE_RE_CHANNEL,
+  redirectDefaultConsoleToRemote: true,
+  disableDefaultConsoleOutput: false,
+});
+console.re.clear();
+
+// Database
+const dbBase = process.env.DB_BASE || "database";
+const dbUser = process.env.DB_USER || "user";
+const dbPass = process.env.DB_PASS || "password";
+const dbHost = process.env.DB_HOST || "localhost";
 
 // Create database connection
 const sequelize = new Sequelize(dbBase, dbUser, dbPass, {
@@ -108,6 +109,7 @@ app.use(crud("/v2/uniswaps", sequelizeCrud(Uniswap)));
 app.use(crud("/v2/coinmarketcap200s", sequelizeCrud(CoinMarketCap200)));
 app.use(crud("/v2/coinmarketcapstables", sequelizeCrud(CoinMarketCapStable)));
 app.use(crud("/v2/pancakeswaps", sequelizeCrud(Pancakeswap)));
+app.use(crud("/v2/oneinches", sequelizeCrud(OneInch)));
 
 app.use(
   crud("/v2/search", {

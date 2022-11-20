@@ -13,6 +13,7 @@ echo "Building Submodules..."
 eval git submodule foreach yarn build
 echo "Building Submodules... Done"
 echo "Move Submodule JSON Data..."
+# would be nice to not have these moves hard coded
 eval mv data/default-token-list/build/uniswap-default.tokenlist.json data/uniswap-default.tokenlist.json
 eval mv data/quickswap-default-token-list/build/quickswap-default.tokenlist.json data/quickswap-default.tokenlist.json
 echo "Move Submodule JSON Data... Done"
