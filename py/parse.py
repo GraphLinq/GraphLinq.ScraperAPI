@@ -1,11 +1,17 @@
 import json
 import mysql.connector
+from decouple import config
+
+HOST = config('DB_HOST')
+USER = config('DB_USER')
+PASS = config('DB_PASS')
+BASE = config('DB_BASE')
 
 mydb = mysql.connector.connect(
-  host="127.0.0.1",
-  user="graphlinq",
-  password="graphlinq",
-  database="livecoinwatch"
+  host=HOST,
+  user=USER,
+  password=PASS,
+  database=BASE
 )
 
 mycursor = mydb.cursor()
@@ -75,20 +81,6 @@ f.close()
 print("Parsing 1inch data... Done")
 
 
-# Needs to be recursively parsed individually inside the blockchains folder
-# This
-#print("Parsing trustwallet data...")
-#f = open('../data/trustwallet.json')
-#d = json.load(f)
-#for i in d:
-#    sql = "INSERT INTO trustwallets (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
-#    val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
-#    mycursor.execute(sql, val)
-#    mydb.commit()
-#f.close()
-#print("Parsing trustwallet data... Done")
-
-
 print("Parsing PancakeSwap data...")
 f = open('../data/pancake.json')
 d = json.load(f)
@@ -99,6 +91,48 @@ for i in d['tokens']:
     mydb.commit()
 f.close()
 print("Parsing PancakeSwap data... Done")
+
+
+# print("Parsing CoinGecko data...")
+# f = open('../data/coingecko.json')
+# d = json.load(f)
+# x = ""
+# for i in d:
+#     for p in i['platforms']:
+#         # Check if CoinGeckoPlatformType exists. If not, insert it.
+#         ##sql = "SELECT * FROM coingeckoplatformtypes WHERE platform = %s"
+#         ##mycursor.execute(sql, p)
+#         ##myresult = mycursor.fetchall()
+#         print("checking")
+#         print(p)
+#         print("done")
+#         #for x in p:
+#         #    print("PlatformTypes Available")
+#         #    print(x)
+#             #mycursor.execute(sql, x)
+#             #myresult = mycursor.fetchall()
+#         print("ok")
+#         x = x + p + ","
+#     sql = "INSERT INTO coingeckos (coinGeckoId, symbol, name, platforms) VALUES (%s, %s, %s, %s)"
+#     val = (i['id'], i['symbol'], i['name'], x)
+#     mycursor.execute(sql, val)
+#     mydb.commit()
+#     x = ""
+# f.close()
+# print("Parsing CoinGecko data... Done")
+
+# Needs to be recursively parsed individually inside the blockchains folder
+# print("Parsing trustwallet data...")
+# f = open('../data/trustwallet.json')
+# d = json.load(f)
+# for i in d:
+#     sql = "INSERT INTO trustwallets (name, address, symbol, decimals, chainId, logoURI) VALUES (%s, %s, %s, %s, %s, %s)"
+#     val = (i['name'], i['address'], i['symbol'], i['decimals'], i['chainId'], i['logoURI'])
+#     mycursor.execute(sql, val)
+#     mydb.commit()
+# f.close()
+# print("Parsing trustwallet data... Done")
+
 
 print("Done")
 print("Run `npm run start` to start the API and Jobs server")
