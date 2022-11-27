@@ -52,32 +52,33 @@ for x in myresult:
     if not os.path.exists(f32):
         subprocess.Popen(["wget", "-O", f32, png32])
         print("Grabbed 32x32: {}.png!".format(code))
-        time.sleep(2.7)
-    if os.path.exists(f32):
+        time.sleep(0.2)
+    else:
         print("{}.png 32x32 already exists!".format(code))
 
     if not os.path.exists(f64):
         subprocess.Popen(["wget", "-O", f64, png64])
         print("Grabbed 64x64: {}.png!".format(code))
-        time.sleep(2.7)
-    if os.path.exists(f64):
+        time.sleep(0.2)
+    else:
         print("{}.png 64x64 already exists!".format(code))
 
     if not os.path.exists(w32):
         subprocess.Popen(["wget", "-O", w32, webp32])
         print("Grabbed 32x32: {}.webp!".format(code))
-        time.sleep(2.2)
-    if os.path.exists(w32):
+        time.sleep(0.2)
+    else:
         print("{}.webp 32x32 already exists!".format(code))
 
     if not os.path.exists(w64):
         subprocess.Popen(["wget", "-O", w64, webp64])
         print("Grabbed 64x64: {}.webp!".format(code))
-        time.sleep(2.2)
-    if os.path.exists(w64):
+        time.sleep(0.2)
+    else:
         print("{}.webp 64x64 already exists!".format(code))
+    print()
     print("Done with {}!".format(code))
-    print
+    print()
 
 print("Done")
 print()
