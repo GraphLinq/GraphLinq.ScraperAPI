@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@godaddy/terminus": "^4.9.0",
-    "@types/bluebird": "^3.5.33",
+    "@types/bluebird": "^3.5.38",
     "@types/bull": "^4.10.0",
     "@types/cors": "^2.8.8",
     "@types/eth-sig-util": "^2.1.0",
