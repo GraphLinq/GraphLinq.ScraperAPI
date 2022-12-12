@@ -27,7 +27,7 @@
     "axios": "^1.2.1",
     "body-parser": "^1.18.3",
     "bull": "^4.10.2",
-    "chalk": "^5.1.2",
+    "chalk": "^5.2.0",
     "clui": "^0.3.6",
     "coingecko-api": "^1.0.10",
     "console-remote-client": "^2.1.17",
