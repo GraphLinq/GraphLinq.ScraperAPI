@@ -8,3 +8,5 @@ export * from "./pancakeswap.model";
 export * from "./oneinch.model";
 export * from "./coingeckoplatform.model";
 export * from "./coingeckoplatformtype.model";
+export * from "./lcwexchange.model";
+export * from "./lcwfiat.model";

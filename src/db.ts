@@ -11,6 +11,8 @@ import {
   OneInch,
   CoinGeckoPlatformType,
   CoinGeckoPlatform,
+  LcwExchange,
+  LcwFiat,
 } from "./models";
 import consolere from "console-remote-client";
 
@@ -484,6 +486,71 @@ CoinGeckoPlatform.init(
   }
 );
 
+console.re.debug("[dbtables]: Sequelize table LcwExchanges");
+LcwExchange.init(
+  {
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    png64: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    png128: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    webp64: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    webp128: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    code: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    modelName: "lcwexchange",
+    sequelize,
+    timestamps: false,
+  }
+);
+
+console.re.debug("[dbtables]: Sequelize table LcwFiats");
+LcwFiat.init(
+  {
+    code: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    countries: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    flag: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    name: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    symbol: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    modelName: "lcwfiat",
+    sequelize,
+    timestamps: false,
+  }
+);
 
 
 // Create new tables

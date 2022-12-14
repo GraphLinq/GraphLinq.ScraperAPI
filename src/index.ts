@@ -16,6 +16,8 @@ import {
   CoinMarketCapStable,
   Pancakeswap,
   OneInch,
+  LcwExchange,
+  LcwFiat,
 } from "./models";
 import { Sequelize, DataTypes, Op } from "sequelize";
 import Bull from "bull";
@@ -110,6 +112,8 @@ app.use(crud("/v2/coinmarketcap200s", sequelizeCrud(CoinMarketCap200)));
 app.use(crud("/v2/coinmarketcapstables", sequelizeCrud(CoinMarketCapStable)));
 app.use(crud("/v2/pancakeswaps", sequelizeCrud(Pancakeswap)));
 app.use(crud("/v2/oneinches", sequelizeCrud(OneInch)));
+app.use(crud("/v2/lcwexchanges", sequelizeCrud(LcwExchange)));
+app.use(crud("/vd/lcwfiats", sequelizeCrud(LcwFiat)));
 
 app.use(
   crud("/v2/search", {
@@ -160,7 +164,7 @@ serverRunnerrQueue.add(
   },
   {
     repeat: {
-      every: 150000,
+      every: 590000,
       //cron: process.env.JOB_SERVER_CRON,
     },
   }
