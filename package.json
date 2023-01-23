@@ -36,7 +36,7 @@
     "eth-sig-util": "^3.0.0",
     "ethereumjs-util": "^7.0.5",
     "express": "^4.16.4",
-    "express-jwt": "^8.2.1",
+    "express-jwt": "^8.3.0",
     "express-sequelize-crud": "^6.2.0",
     "figlet": "^1.5.0",
     "jsonwebtoken": "^9.0.0",
