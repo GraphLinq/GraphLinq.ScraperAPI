@@ -137,10 +137,10 @@ const apiServer = app.listen(port, () =>
 );
 
 // Redis Bull Queue
-const serverRunnerrQueue = new Bull("serverRunner", {
+const serverRunnerrQueue = new Bull('serverRunner', {
   redis: {
-    port: process.env.REDIS_PORT,
-    host: "127.0.0.1",
+    port: 6379,
+    host: process.env.REDIS_HOST,
     password: process.env.REDIS_PASS,
   },
 });
