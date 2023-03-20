@@ -40,7 +40,7 @@
     "express-sequelize-crud": "^6.2.0",
     "figlet": "^1.5.0",
     "jsonwebtoken": "^9.0.0",
-    "mariadb": "^3.1.0",
+    "mariadb": "^3.1.1",
     "morgan": "^1.10.0",
     "mysql2": "^3.2.0",
     "node-cleanup": "^2.1.2",
