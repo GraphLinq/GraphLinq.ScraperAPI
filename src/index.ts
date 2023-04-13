@@ -83,7 +83,7 @@ const host = process.env.API_HOST || "http://localhost";
 
 // Get our CORS options
 console.re.debug("[corsopts]:", process.env.CORS_ORIGIN);
-const corsOrigin = process.env.CORS_ORIGIN || ["http://localhost:8000"];
+const corsOrigin = process.env.CORS_ORIGIN || ["http://localhost:3333"];
 
 // Add our Middlewares
 const whitelist = corsOrigin;
@@ -95,8 +95,8 @@ const corsOptions = {
       console.re.debug(
         "[api_serv]: [CORS: Rejected Request] FROM: script kiddie]"
       );
-      //callback(new Error("Not allowed by CORS")); // UNDO THIS!!!!!
-      callback(null, true);
+      callback(new Error("Not allowed by CORS")); // UNDO THIS!!!!!
+      callback(null, false);
     }
   },
   exposeHeaders: ["Content-Length", "Content-Range"],
@@ -113,7 +113,7 @@ app.use(crud("/v2/coinmarketcapstables", sequelizeCrud(CoinMarketCapStable)));
 app.use(crud("/v2/pancakeswaps", sequelizeCrud(Pancakeswap)));
 app.use(crud("/v2/oneinches", sequelizeCrud(OneInch)));
 app.use(crud("/v2/lcwexchanges", sequelizeCrud(LcwExchange)));
-app.use(crud("/vd/lcwfiats", sequelizeCrud(LcwFiat)));
+app.use(crud("/v2/lcwfiats", sequelizeCrud(LcwFiat)));
 
 app.use(
   crud("/v2/search", {
