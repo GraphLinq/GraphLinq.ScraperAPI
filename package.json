@@ -15,7 +15,7 @@
     "pretty": "npx prettier --write ."
   },
   "dependencies": {
-    "@godaddy/terminus": "^4.9.0",
+    "@godaddy/terminus": "^4.12.0",
     "@types/bluebird": "^3.5.38",
     "@types/bull": "^4.10.0",
     "@types/cors": "^2.8.13",
