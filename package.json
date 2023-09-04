@@ -18,7 +18,7 @@
     "@godaddy/terminus": "^4.12.1",
     "@types/bluebird": "^3.5.38",
     "@types/bull": "^4.10.0",
-    "@types/cors": "^2.8.13",
+    "@types/cors": "^2.8.14",
     "@types/eth-sig-util": "^2.1.0",
     "@types/express": "^4.17.17",
     "@types/express-jwt": "^7.4.2",
