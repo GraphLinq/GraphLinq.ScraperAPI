@@ -36,7 +36,7 @@
     "eth-sig-util": "^3.0.0",
     "ethereumjs-util": "^7.0.5",
     "express": "^4.16.4",
-    "express-crud-router": "^7.0.1",
+    "express-crud-router": "^8.0.1",
     "express-jwt": "^8.4.1",
     "figlet": "^1.6.0",
     "jsonwebtoken": "^9.0.2",
