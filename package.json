@@ -46,7 +46,7 @@
     "node-cleanup": "^2.1.2",
     "node-uuid": "^1.4.8",
     "sequelize": "^6.33.0",
-    "web3": "^4.1.1",
+    "web3": "^4.2.2",
     "web3-eth-contract": "^4.0.3",
     "winston": "^3.10.0",
     "winston-transport": "^4.4.0"
