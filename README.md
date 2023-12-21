@@ -85,4 +85,4 @@ The following data sources are available:
 
 ## Database
 
-The database is build on inital run so there is no need to supply a .sql file.
+The database is built on inital run so there is no need to supply a .sql file.
