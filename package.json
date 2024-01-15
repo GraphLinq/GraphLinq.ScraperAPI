@@ -57,7 +57,7 @@
     "prettier": "^3.0.3",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "resolutions": {
     "ethereumjs-util": ">=6.0.0"
