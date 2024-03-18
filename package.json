@@ -35,7 +35,7 @@
     "dotenv": "^16.4.5",
     "eth-sig-util": "^3.0.0",
     "ethereumjs-util": "^7.0.5",
-    "express": "^4.16.4",
+    "express": "^4.18.3",
     "express-crud-router": "^8.0.2",
     "express-jwt": "^8.4.1",
     "figlet": "^1.7.0",
