@@ -40,7 +40,7 @@
     "express-jwt": "^8.4.1",
     "figlet": "^1.7.0",
     "jsonwebtoken": "^9.0.2",
-    "mariadb": "^3.2.3",
+    "mariadb": "^3.3.0",
     "morgan": "^1.10.0",
     "mysql2": "^3.9.2",
     "node-cleanup": "^2.1.2",
