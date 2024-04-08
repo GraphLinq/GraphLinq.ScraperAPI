@@ -52,7 +52,7 @@
     "winston-transport": "^4.7.0"
   },
   "devDependencies": {
-    "mocha": "^10.3.0",
+    "mocha": "^10.4.0",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
     "supertest": "^6.3.4",
