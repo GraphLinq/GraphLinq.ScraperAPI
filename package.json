@@ -45,7 +45,7 @@
     "mysql2": "^3.9.2",
     "node-cleanup": "^2.1.2",
     "node-uuid": "^1.4.8",
-    "sequelize": "^6.37.2",
+    "sequelize": "^6.37.3",
     "web3": "^4.7.0",
     "web3-eth-contract": "^4.3.0",
     "winston": "^3.13.0",
