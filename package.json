@@ -47,7 +47,7 @@
     "node-uuid": "^1.4.8",
     "sequelize": "^6.37.3",
     "web3": "^4.10.0",
-    "web3-eth-contract": "^4.3.0",
+    "web3-eth-contract": "^4.6.0",
     "winston": "^3.13.0",
     "winston-transport": "^4.7.1"
   },
