@@ -48,7 +48,7 @@
     "sequelize": "^6.37.3",
     "web3": "^4.10.0",
     "web3-eth-contract": "^4.6.0",
-    "winston": "^3.13.0",
+    "winston": "^3.13.1",
     "winston-transport": "^4.7.1"
   },
   "devDependencies": {
